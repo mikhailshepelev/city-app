@@ -1,0 +1,12 @@
+<div class="d-flex my-2">
+  <input
+    #myInput
+    type="text"
+    class="form-control me-2"
+    placeholder="Search for cities..."
+    (keyup.enter)="doSearch(myInput.value)"
+  />
+  <button (click)="doSearch(myInput.value)" class="btn btn-secondary my-sm-0">
+    Search
+  </button>
+</div>
