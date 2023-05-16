@@ -3,16 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/header/header.component';
+import { CitiesListComponent } from './components/cities-list/cities-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CityService } from './services/city.service';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  declarations: [AppComponent, HeaderComponent, CitiesListComponent, SearchComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  providers: [CityService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
