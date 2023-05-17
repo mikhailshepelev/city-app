@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,8 +11,18 @@ import { CityService } from './services/city.service';
 import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, CitiesListComponent, SearchComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    CitiesListComponent,
+    SearchComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    NgxPaginationModule,
+  ],
   providers: [CityService],
   bootstrap: [AppComponent],
 })

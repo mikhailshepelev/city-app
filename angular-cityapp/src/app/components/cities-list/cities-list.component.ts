@@ -10,9 +10,12 @@ import { CityService } from 'src/app/services/city.service';
 })
 export class CitiesListComponent {
   cities: City[] = [];
-  searchMode: boolean = false;
-  keyword: string = '';
-  citiesLoaded: boolean = true;
+  searchKeyword: string = '';
+  dataLoaded: boolean = true;
+
+  page: number = 1;
+  perPage: number = 10;
+  total: number = 0;
 
   constructor(
     private cityService: CityService,
@@ -21,38 +24,40 @@ export class CitiesListComponent {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
-      this.citiesLoaded = false;
-      this.handleListCities();
+      this.dataLoaded = false;
+      this.getListCities();
     });
   }
 
-  listCities() {
-    this.cityService.getCitiesList().subscribe((data) => {
-      console.log(data);
-      this.cities = data;
-      this.citiesLoaded = true;
-    });
+  getListCities() {
+    this.searchKeyword = this.route.snapshot.paramMap.get('keyword')!;
+
+    this.cityService
+      // this.page - 1 needed because spring data Page is 0-based,
+      // while npx-pagination is 1-based. Same thing vice-versa in processData method
+      .getCities(this.searchKeyword, this.page - 1, this.perPage)
+      .subscribe((data) => {
+        this.processData(data);
+        this.dataLoaded = true;
+      });
   }
 
-  handleListCities() {
-    this.searchMode = this.route.snapshot.paramMap.has('keyword');
-    const keyword: string = this.route.snapshot.paramMap.get('keyword')!;
-
-    if (this.searchMode) {
-      console.log('Search active ');
-      this.searchCities(keyword);
-    } else {
-      console.log('Search inactive');
-      this.listCities();
-    }
+  processData(data: any) {
+    this.cities = data.content;
+    this.page = data.number + 1;
+    this.perPage = data.size;
+    this.total = data.totalElements;
   }
 
-  searchCities(name: string) {
-    this.cityService.searchCities(name).subscribe((data) => {
-      console.log(data);
-      this.cities = data;
-      this.citiesLoaded = true;
-    });
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.getListCities();
+  }
+
+  onTableSizeChange(event: any): void {
+    this.perPage = event.target.value;
+    this.page = 1;
+    this.getListCities();
   }
 
   displayDefaultImage(event: ErrorEvent) {
