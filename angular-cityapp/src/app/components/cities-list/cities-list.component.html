@@ -1,6 +1,6 @@
 <div class="container bg-light my-3">
   <div class="row">
-    <div class="col-md-9 col-lg-9 col-xs-3 col-sm-3">
+    <div class="col-md-9 col-lg-9 col-xs-9 col-sm-9">
       <pagination-controls
         (pageChange)="onTableDataChange($event)"
         previousLabel="Prev"
@@ -32,19 +32,7 @@
       "
       class="col-xs-12 col-sm-6 col-md-4 col-lg-3"
     >
-      <div class="card m-2">
-        <img
-          src="{{ city.imageUrl }}"
-          class="card-img-top"
-          style="height: 200px; width: 100%; object-fit: cover"
-          alt="{{ city.name }}"
-          (error)="displayDefaultImage($event)"
-        />
-        <div class="card-body">
-          <h5 class="card-title">{{ city.name }}</h5>
-          <button type="button" class="btn btn-primary my-1">Edit Info</button>
-        </div>
-      </div>
+      <app-city-card [city]="city"></app-city-card>
     </div>
 
     <div

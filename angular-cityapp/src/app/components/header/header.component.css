@@ -1,0 +1,8 @@
+a.pointer {
+  cursor: pointer;
+}
+
+div.remove-flex-grow {
+  flex-grow: 0;
+  flex-basis: auto;
+}

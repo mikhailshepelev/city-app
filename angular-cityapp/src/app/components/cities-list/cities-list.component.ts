@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { City } from 'src/app/models/city';
 import { CityService } from 'src/app/services/city.service';
 
@@ -24,6 +24,7 @@ export class CitiesListComponent {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
+      this.page = 1;
       this.dataLoaded = false;
       this.getListCities();
     });
@@ -58,9 +59,5 @@ export class CitiesListComponent {
     this.perPage = event.target.value;
     this.page = 1;
     this.getListCities();
-  }
-
-  displayDefaultImage(event: ErrorEvent) {
-    (event.target as HTMLImageElement).src = 'assets/images/no-image-found.png';
   }
 }

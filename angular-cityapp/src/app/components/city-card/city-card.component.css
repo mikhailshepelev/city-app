@@ -1,0 +1,5 @@
+img.img-custom {
+  height: 200px;
+  width: auto;
+  object-fit: cover;
+}

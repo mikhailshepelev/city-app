@@ -21,7 +21,8 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "src/styles.css",
-              "bootswatch/dist/solar/bootstrap.min.css"
+              "bootswatch/dist/solar/bootstrap.min.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": ["bootstrap/dist/js/bootstrap.min.js"]
           },

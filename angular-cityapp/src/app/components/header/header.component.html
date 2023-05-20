@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="#">City App</a>
+    <a class="navbar-brand pointer" (click)="navigateToCities()">City App</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -12,11 +12,7 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div
-      class="collapse navbar-collapse"
-      style="flex-grow: 0; flex-basis: auto"
-      id="menuItems"
-    >
+    <div class="collapse navbar-collapse remove-flex-grow" id="menuItems">
       <app-search></app-search>
     </div>
   </div>

@@ -1,0 +1,18 @@
+<div class="card m-2">
+  <img
+    [src]="this.imageUrl"
+    class="card-img-top img-custom"
+    [alt]="city.name"
+    (error)="displayDefaultImage($event)"
+  />
+  <div class="card-body">
+    <h5 class="card-title">{{ city.name }}</h5>
+    <button
+      type="button"
+      (click)="editCity(city.id)"
+      class="btn btn-primary my-1"
+    >
+      Edit Info
+    </button>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+@media (max-width: 930px) {
+  img.img-custom {
+    max-width: 90% !important;
+  }
+}
+
+img.img-custom {
+  max-width: 50%;
+  max-height: 30rem;
+}

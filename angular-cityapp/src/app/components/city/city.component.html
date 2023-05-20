@@ -1,0 +1,46 @@
+<div class="container mt-5">
+  <h1>Edit City Info</h1>
+
+  <form (ngSubmit)="!cityForm.invalid && saveCity()" #cityForm="ngForm">
+    <fieldset class="mt-4">
+      <img
+        [src]="imageUrl"
+        [alt]="city!.name"
+        class="object-fit-cover border rounded img-custom"
+        (error)="displayDefaultImage($event)"
+      />
+      <div class="mt-4">
+        <input
+          type="file"
+          accept="image/*"
+          id="cityImageInput"
+          (change)="onSelectFile($event)"
+        />
+      </div>
+    </fieldset>
+
+    <fieldset class="mt-4">
+      <label for="cityNameInput" class="form-label">City Name</label>
+      <input
+        type="text"
+        class="form-control w-50"
+        id="cityNameInput"
+        [(ngModel)]="city!.name"
+        name="cityName"
+      />
+    </fieldset>
+
+    <div class="mt-4 pb-5">
+      <a class="btn btn-secondary btn-lg me-2" (click)="navigateToCities()"
+        >Back</a
+      >
+      <button
+        type="submit"
+        class="btn btn-primary btn-lg"
+        [disabled]="!city!.name"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>

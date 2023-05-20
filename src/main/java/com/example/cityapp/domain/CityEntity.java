@@ -14,6 +14,8 @@ public class CityEntity {
 
     private String imageUrl;
 
+    private byte[] image;
+
     public CityEntity() {
     }
 
@@ -45,5 +47,13 @@ public class CityEntity {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }

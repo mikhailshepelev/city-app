@@ -1,5 +1,6 @@
 CREATE TABLE city (
   id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255),
-  image_url VARCHAR(1000)
+  image_url VARCHAR(1000),
+  image BLOB
 );
