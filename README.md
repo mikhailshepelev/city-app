@@ -12,7 +12,7 @@ Before running the project, make sure you have the following software installed:
 ```bash
 git clone https://github.com/your-username/cityapp.git
 ```
-2.Backend Setup:
+2. Backend Setup:
 - Open a terminal or command line at the root project folder.
 - Run the following command to start the backend server (or open project and run in IntelliJ IDEA or other IDE):
 ```bash
@@ -31,11 +31,11 @@ npm install
 
 ## Run the Application
 To run the CityApp, follow these steps:
-Backend:
-Make sure the backend server is already running as explained in the "Backend Setup" section.
-Frontend:
-Open a terminal or command line at the "angular-cityapp" folder.
-Run the following command to start the frontend server and open the application in your default browser:
+1. Backend:
+- Make sure the backend server is already running as explained in the "Backend Setup" section.
+2. Frontend:
+- Open a terminal or command line at the "angular-cityapp" folder. <br>
+- Run the following command to start the frontend server and open the application in your default browser:
 ```bash
 ng serve --open
 ```
