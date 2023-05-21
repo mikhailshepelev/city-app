@@ -19,7 +19,6 @@ export class CityComponent {
   constructor(
     private cityService: CityService,
     private route: ActivatedRoute,
-    private router: Router,
     private toastr: ToastrService
   ) {}
 
@@ -70,10 +69,6 @@ export class CityComponent {
       this.toastr.success('City successfully saved!');
       this.city = data;
     });
-  }
-
-  navigateToCities() {
-    this.router.navigateByUrl('/cities');
   }
 
   displayDefaultImage(event: ErrorEvent) {

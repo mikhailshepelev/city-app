@@ -19,6 +19,6 @@ export class CityService {
   }
 
   updateCity(data: FormData, id: number) {
-    return this.http.patch<any>(`${this.baseUrl}/${id}`, data);
+    return this.http.post<any>(`${this.baseUrl}/${id}`, data);
   }
 }

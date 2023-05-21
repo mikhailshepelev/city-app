@@ -1,13 +1,8 @@
 package com.example.cityapp;
 
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class CityappApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+        properties = "command.line.runner.enabled=false")
+public class CityappApplicationTests {
 }

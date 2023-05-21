@@ -10,7 +10,7 @@ import { CityService } from 'src/app/services/city.service';
 })
 export class CitiesListComponent {
   cities: City[] = [];
-  searchKeyword: string = '';
+  searchKeyword: string | null = '';
   dataLoaded: boolean = true;
 
   page: number = 1;
@@ -31,7 +31,7 @@ export class CitiesListComponent {
   }
 
   getListCities() {
-    this.searchKeyword = this.route.snapshot.paramMap.get('keyword')!;
+    this.searchKeyword = this.route.snapshot.paramMap.get('keyword') || '';
 
     this.cityService
       // this.page - 1 needed because spring data Page is 0-based,
@@ -45,8 +45,8 @@ export class CitiesListComponent {
 
   processData(data: any) {
     this.cities = data.content;
-    this.page = data.number + 1;
-    this.perPage = data.size;
+    this.page = data.page + 1;
+    this.perPage = data.perPage;
     this.total = data.totalElements;
   }
 

@@ -1,53 +1,46 @@
 package com.example.cityapp.controller;
 
-import com.example.cityapp.domain.CityEntity;
 import com.example.cityapp.dto.CityDto;
-import com.example.cityapp.repository.CityRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import com.example.cityapp.dto.CustomPage;
+import com.example.cityapp.service.CityService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Objects;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/cities")
-public record CityController(CityRepository cityRepository) {
+public class CityController {
+
+    private final CityService cityService;
+
+    public CityController(CityService cityService) {
+        this.cityService = cityService;
+    }
 
     @GetMapping
-    public ResponseEntity<Page<CityDto>> searchCities(@RequestParam("keyword") String keyword,
-                                                      @RequestParam("page") int page,
-                                                      @RequestParam("perPage") int perPage) {
-        Page<CityEntity> entities = cityRepository.findByNameContaining(
-                Objects.equals(keyword, "null") ? "" : keyword,
-                PageRequest.of(page, perPage)
-        );
-        Page<CityDto> result = entities.map(CityDto::new);
-        return ResponseEntity.ok(result);
+    public ResponseEntity<CustomPage<CityDto>> searchCities(@RequestParam("keyword") String keyword,
+                                                            @RequestParam("page") int page,
+                                                            @RequestParam("perPage") int perPage) {
+        return ResponseEntity.ok(cityService.search(keyword, page, perPage));
     }
 
     @GetMapping("/{id}")
-    public CityDto getCity(@PathVariable long id) {
-        CityEntity entity = cityRepository.findById(id).orElseThrow();
-        return new CityDto(entity);
+    public ResponseEntity<CityDto> getCity(@PathVariable long id) {
+        Optional<CityDto> optCity = cityService.getById(id);
+        return optCity.map(cityDto -> new ResponseEntity<>(cityDto, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
     }
 
 
-    @PatchMapping("/{id}")
-    public ResponseEntity<?> updateCity(@PathVariable long id,
-                                        @RequestPart(value = "image", required = false) MultipartFile file,
+    @PostMapping("/{id}")
+    public ResponseEntity<CityDto> updateCity(@PathVariable long id,
+                                        @RequestPart(value = "image", required = false) MultipartFile image,
                                         @RequestPart("name") String name) throws IOException {
-        CityEntity entity = cityRepository.findById(id).orElseThrow();
-        if (file != null) {
-            entity.setImage(file.getBytes());
-            entity.setImageUrl(null);
-        }
-        entity.setName(name);
 
-        cityRepository.save(entity);
-
-        return ResponseEntity.ok(entity);
+        return ResponseEntity.ok(cityService.save(id, name, image));
     }
 }
