@@ -41,6 +41,9 @@ ng serve --open
 ```
 The application will now be accessible in your browser at http://localhost:4200.
 
+## Additional Notes
+- For demonstration purposes database for this project is in-memory H2 database, so no specific database setup required
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
