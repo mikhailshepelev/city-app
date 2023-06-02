@@ -10,7 +10,7 @@ Before running the project, make sure you have the following software installed:
 ## Installation
 1. Clone the project repository to your local machine:
 ```bash
-git clone https://github.com/your-username/cityapp.git
+git clone https://github.com/mikhailshepelev/city-app
 ```
 2. Backend Setup:
 - Open a terminal or command line at the root project folder.
